@@ -1,6 +1,10 @@
+package com.squad_17_api.demo.controller;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import com.squad_17_api.demo.model.Aluno; // Importação da classe Aluno
+import com.squad_17_api.demo.service.AlunoService;
 import java.util.List;
 
 @RestController
