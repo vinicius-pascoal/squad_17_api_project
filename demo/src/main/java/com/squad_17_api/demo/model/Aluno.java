@@ -2,6 +2,7 @@ package com.squad_17_api.demo.model;
 
 import javax.persistence.*;
 
+
 @Entity
 
 public class Aluno {
