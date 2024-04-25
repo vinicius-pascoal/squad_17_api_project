@@ -1,20 +1,19 @@
+private CursoDAO cursoDAO;
 
-import org.springframework.beans.factory.annotation.Autowired;
+@GetMapping
+public List<Curso> getCursos() {
+    return cursoDAO.findAll();
+}import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+        import java.util.List;
 
 @RestController
 @RequestMapping("/cursos")
 public class CursoController {
 
     @Autowired
-    private CursoDAO cursoDAO;
 
-    @GetMapping
-    public List<Curso> getCursos() {
-        return cursoDAO.findAll();
-    }
 
     @GetMapping("/{id}")
     public Curso getCurso(@PathVariable int id) {
@@ -27,7 +26,7 @@ public class CursoController {
     }
 
     @PutMapping("/{id}")
-    public Curso updateCurso(@PathVariable int id, @RequestBody Curso curso) {
+    public Curso updateCurso(@RequestBody Curso curso) {
         curso.setIdCurso(id);
         return cursoDAO.save(curso);
     }
