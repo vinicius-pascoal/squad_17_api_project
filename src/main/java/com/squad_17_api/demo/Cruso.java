@@ -1,5 +1,3 @@
-import javax.persistence.*;
-
 @Entity
 @Table(name = "cursos")
 public class Curso {

@@ -1,3 +1,4 @@
+
 private CursoDAO cursoDAO;
 
 @GetMapping
@@ -26,7 +27,7 @@ public class CursoController {
     }
 
     @PutMapping("/{id}")
-    public Curso updateCurso(@RequestBody Curso curso) {
+    public Curso updateCurso(@PathVariable int id, @RequestBody Curso curso) {
         curso.setIdCurso(id);
         return cursoDAO.save(curso);
     }
