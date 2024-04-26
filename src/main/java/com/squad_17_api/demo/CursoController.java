@@ -26,7 +26,7 @@ public class CursoController {
     }
 
     @PutMapping("/{id}")
-    public Curso updateCurso(@PathVariable int id, @RequestBody Curso curso) {
+    public Curso updateCurso(@RequestBody Curso curso) {
         curso.setIdCurso(id);
         return cursoDAO.save(curso);
     }
