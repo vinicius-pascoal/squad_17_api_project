@@ -1,3 +1,4 @@
+package com.squad_17_api.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -26,7 +27,7 @@ public class CursoController {
 
     @PutMapping("/{id}")
     public Curso updateCurso(@PathVariable int id, @RequestBody Curso curso) {
-        curso.setIdCurso(id);
+        curso.setId(id);
         return cursoDAO.save(curso);
     }
 
