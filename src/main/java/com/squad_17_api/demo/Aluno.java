@@ -24,9 +24,35 @@ public class Aluno {
     @Column(name = "num_matricula", nullable = false)
     private int num_matricula;
 
+    public int getIdAluno() {
+        return id_aluno;
+    }
+
     public void setIdAluno(int id_aluno) {
         this.id_aluno = id_aluno;
     }
 
-    // Getters and setters
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmailAluno() {
+        return email_aluno;
+    }
+
+    public void setEmailAluno(String email_aluno) {
+        this.email_aluno = email_aluno;
+    }
+
+    public int getNumMatricula() {
+        return num_matricula;
+    }
+
+    public void setNumMatricula(int num_matricula) {
+        this.num_matricula = num_matricula;
+    }
 }
