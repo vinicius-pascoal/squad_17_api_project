@@ -1,6 +1,6 @@
 package com.squad_17_api.demo.controller;
 
-import com.squad_17_api.demo.model.Aluno; // Importe a classe Aluno corretamente aqui
+import com.squad_17_api.demo.model.Aluno;
 import com.squad_17_api.demo.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,8 +37,15 @@ public class AlunoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Aluno> atualizarAluno(@PathVariable int id, @RequestBody Aluno alunoAtualizado) {
-        alunoAtualizado.setIdAluno(id);
-        Aluno aluno = alunoRepository.save(alunoAtualizado);
+        Aluno alunoExistente = alunoRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Aluno não encontrado"));
+
+        alunoExistente.setId(id);
+        alunoExistente.setIdUsuario(alunoAtualizado.getIdUsuario());
+        alunoExistente.setNome(alunoAtualizado.getNome());
+        alunoExistente.setMatricula(alunoAtualizado.getMatricula());
+
+        Aluno aluno = alunoRepository.save(alunoExistente);
         return ResponseEntity.ok(aluno);
     }
 

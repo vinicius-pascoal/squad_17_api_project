@@ -1,26 +1,34 @@
 package com.squad_17_api.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Aluno {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idAluno;
+    private int id;
+    private int id_usuario;
     private String nome;
-    private String emailAluno;
-    private int numMatricula;
+    private int matricula;
 
     // Getters e Setters
-    public int getIdAluno() {
-        return idAluno;
+    public int getId() {
+        return id;
     }
 
-    public void setIdAluno(int idAluno) {
-        this.idAluno = idAluno;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getIdUsuario() {
+        return id_usuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.id_usuario = idUsuario;
     }
 
     public String getNome() {
@@ -31,19 +39,11 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public String getEmailAluno() {
-        return emailAluno;
+    public int getMatricula() {
+        return matricula;
     }
 
-    public void setEmailAluno(String emailAluno) {
-        this.emailAluno = emailAluno;
-    }
-
-    public int getNumMatricula() {
-        return numMatricula;
-    }
-
-    public void setNumMatricula(int numMatricula) {
-        this.numMatricula = numMatricula;
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
     }
 }
