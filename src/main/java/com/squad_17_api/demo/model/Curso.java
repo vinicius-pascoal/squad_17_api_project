@@ -1,4 +1,4 @@
-package com.squad_17_api.demo;
+package com.squad_17_api.demo.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
@@ -22,6 +22,10 @@ public class Curso {
 
     @Column(name = "ativo", nullable = false)
     private boolean ativo;
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getId() {
         return id;
@@ -51,4 +55,4 @@ public class Curso {
         this.ativo = ativo;
     }
 }
-}
+
