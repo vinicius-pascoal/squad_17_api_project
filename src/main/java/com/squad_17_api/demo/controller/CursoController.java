@@ -30,14 +30,14 @@ public class CursoController {
         return ResponseEntity.ok(cursoService.criar(curso));
     }
 
-//    @PutMapping("/{id}")
-//    public Curso updateCurso(@PathVariable int id, @RequestBody Curso curso) {
-//        curso.setId(id);
-//        return cursoRepository.save(curso);
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public void deleteCurso(@PathVariable int id) {
-//        cursoRepository.deleteById(id);
-//    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Curso>atualizarCurso(@PathVariable int id, @RequestBody Curso curso) {
+       curso.setId(id);
+       return ResponseEntity.ok(cursoService.atualizar(curso));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Curso> deleteCurso(@PathVariable int id) {
+      return ResponseEntity.ok(cursoService.deletar(id));
+  }
 }
