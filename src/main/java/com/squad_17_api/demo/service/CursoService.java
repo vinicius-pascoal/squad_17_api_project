@@ -9,4 +9,6 @@ public interface CursoService {
     List<Curso> buscarTodos();
     Optional<Curso> buscarPorId(Integer id);
     Curso criar(Curso curso);
+    Curso atualizar(Curso curso);
+    Curso deletar(Integer id);
 }

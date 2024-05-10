@@ -32,4 +32,14 @@ public class CursoServiceImpl implements CursoService {
         return cursoRepository.save(curso);
     }
 
+    @Override
+    public Curso atualizar(Curso curso) {
+        return null;
+    }
+
+    @Override
+    public Curso deletar(Integer id) {
+        return null;
+    }
+
 }
