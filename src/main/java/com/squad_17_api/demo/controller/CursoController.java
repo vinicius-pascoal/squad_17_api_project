@@ -40,4 +40,5 @@ public class CursoController {
     public ResponseEntity<Curso> deleteCurso(@PathVariable Integer id) {
       return ResponseEntity.ok(cursoService.deletar(id));
   }
+
 }

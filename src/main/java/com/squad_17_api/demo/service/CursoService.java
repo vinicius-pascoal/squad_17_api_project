@@ -11,4 +11,5 @@ public interface CursoService {
     Curso criar(Curso curso);
     Curso atualizar(Curso curso);
     Curso deletar(Integer id);
+
 }

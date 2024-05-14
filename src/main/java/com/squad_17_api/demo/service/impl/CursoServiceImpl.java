@@ -1,5 +1,6 @@
 package com.squad_17_api.demo.service.impl;
 
+import com.squad_17_api.demo.exception.CursoExistenteException;
 import com.squad_17_api.demo.model.Curso;
 import com.squad_17_api.demo.repository.CursoRepository;
 import com.squad_17_api.demo.service.CursoService;
@@ -29,6 +30,9 @@ public class CursoServiceImpl implements CursoService {
 
     @Override
     public Curso criar(Curso curso) {
+        if (cursoRepository.findById(curso.getId()).isPresent()) {
+            throw new CursoExistenteException("Já existe um curso com o ID informado. Utilize o método atualizar para modificar um curso existente.");
+        }
         return cursoRepository.save(curso);
     }
 
