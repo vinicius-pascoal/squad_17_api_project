@@ -24,6 +24,10 @@ public class AlunoController {
 
     @PostMapping
     public ResponseEntity<Aluno> adicionarAluno(@RequestBody Aluno aluno) {
+        if (aluno.getId() != null && alunoRepository.existsById(aluno.getId())) {
+            throw new IllegalArgumentException("Não é possível adicionar o aluno porque já existe um aluno com o ID fornecido.");
+        }
+
         Aluno novoAluno = alunoRepository.save(aluno);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoAluno);
     }
@@ -37,21 +41,24 @@ public class AlunoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Aluno> atualizarAluno(@PathVariable int id, @RequestBody Aluno alunoAtualizado) {
-        Aluno alunoExistente = alunoRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Aluno não encontrado"));
+        if (!alunoRepository.existsById(id)) {
+            throw new IllegalArgumentException("Não é possível atualizar o aluno porque não existe nenhum aluno com o ID fornecido.");
+        }
 
-        alunoExistente.setId(id);
-        alunoExistente.setIdUsuario(alunoAtualizado.getIdUsuario());
-        alunoExistente.setNome(alunoAtualizado.getNome());
-        alunoExistente.setMatricula(alunoAtualizado.getMatricula());
+        alunoAtualizado.setId(id); // Garante que o ID seja o mesmo
 
-        Aluno aluno = alunoRepository.save(alunoExistente);
+        Aluno aluno = alunoRepository.save(alunoAtualizado);
         return ResponseEntity.ok(aluno);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarAluno(@PathVariable int id) {
+        if (!alunoRepository.existsById(id)) {
+            throw new IllegalArgumentException("Aluno não encontrado");
+        }
+
         alunoRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
 }

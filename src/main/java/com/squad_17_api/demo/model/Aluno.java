@@ -8,26 +8,25 @@ import jakarta.persistence.Id;
 @Entity
 public class Aluno {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private int id_usuario;
+    private Integer id;
+    private Integer id_usuario;
     private String nome;
-    private int matricula;
+    private Integer matricula;
 
     // Getters e Setters
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getIdUsuario() {
+    public Integer getIdUsuario() {
         return id_usuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(Integer idUsuario) {
         this.id_usuario = idUsuario;
     }
 
@@ -39,11 +38,11 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public int getMatricula() {
+    public Integer getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(Integer matricula) {
         this.matricula = matricula;
     }
 }
