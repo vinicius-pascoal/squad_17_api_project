@@ -34,12 +34,24 @@ public class CursoServiceImpl implements CursoService {
 
     @Override
     public Curso atualizar(Curso curso) {
-        return null;
+        return cursoRepository.findById(curso.getId())
+                .map(existingCurso -> {
+                    existingCurso.setNome(curso.getNome());
+                    existingCurso.setDescricao(curso.getDescricao());
+                    existingCurso.setAtivo(curso.isAtivo());
+                    return cursoRepository.save(existingCurso);
+                })
+                .orElseGet(() -> cursoRepository.save(curso));
+
     }
 
     @Override
     public Curso deletar(Integer id) {
-        return null;
+        return cursoRepository.findById(id)
+                .map(curso -> {
+                    cursoRepository.delete(curso);
+                    return curso;
+                })
+                .orElse(null);
     }
-
 }

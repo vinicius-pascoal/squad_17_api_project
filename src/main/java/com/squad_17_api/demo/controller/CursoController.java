@@ -20,7 +20,7 @@ public class CursoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Curso> buscarPortId(@PathVariable int id) {
+    public ResponseEntity<Curso> buscarPortId(@PathVariable Integer id) {
         return ResponseEntity.ok(cursoService.buscarPorId(id).orElse(null));
     }
 
@@ -31,13 +31,13 @@ public class CursoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Curso>atualizarCurso(@PathVariable int id, @RequestBody Curso curso) {
+    public ResponseEntity<Curso>atualizarCurso(@PathVariable Integer id, @RequestBody Curso curso) {
        curso.setId(id);
        return ResponseEntity.ok(cursoService.atualizar(curso));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Curso> deleteCurso(@PathVariable int id) {
+    public ResponseEntity<Curso> deleteCurso(@PathVariable Integer id) {
       return ResponseEntity.ok(cursoService.deletar(id));
   }
 }
