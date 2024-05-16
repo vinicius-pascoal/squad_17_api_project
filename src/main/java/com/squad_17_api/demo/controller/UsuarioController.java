@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import com.squad_17_api.demo.repository.UserRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuario")
@@ -35,14 +36,19 @@ public class UsuarioController {
 
     }
 
-    @PutMapping("/{email}")
-    public ResponseEntity<Usuario>atualizarUsuario(@PathVariable String email, @RequestBody Usuario usuario) {
-        usuario.setEmail(email);
+    @GetMapping("/{id}")
+    public ResponseEntity<Usuario> buscarPorId(@PathVariable Integer id) {
+        Optional<Usuario> usuario = userService.buscarPorId(id);
+        return usuario.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Usuario> atualizarUsuario(@PathVariable Integer id, @RequestBody Usuario usuario) {
+        usuario.setId(id);
         return ResponseEntity.ok(userService.atualizar(usuario));
     }
 
     @DeleteMapping("/{email}")
     public ResponseEntity<Usuario> deleteUsuario(@PathVariable String email) {
         return ResponseEntity.ok(userService.deletar(email));
-    }
 }

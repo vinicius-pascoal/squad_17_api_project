@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface UsuarioService {
     List<Usuario> buscarTodos();
     Usuario buscarPorEmail(String email);
+    Optional<Usuario> buscarPorId(Integer id);
     Usuario atualizar(Usuario usuario);
     Usuario deletar(String email);
 }
