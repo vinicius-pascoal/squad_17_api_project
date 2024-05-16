@@ -60,5 +60,6 @@ public class AlunoController {
         alunoRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+    //oi
 
 }

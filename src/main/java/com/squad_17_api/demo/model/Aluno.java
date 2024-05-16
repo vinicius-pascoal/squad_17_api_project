@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class Aluno {
     @Id
     private Integer id;
-    private Integer id_usuario;
+    private Integer idUsuario;
     private String nome;
     private Integer matricula;
 
@@ -23,11 +23,11 @@ public class Aluno {
     }
 
     public Integer getIdUsuario() {
-        return id_usuario;
+        return idUsuario;
     }
 
     public void setIdUsuario(Integer idUsuario) {
-        this.id_usuario = idUsuario;
+        this.idUsuario = idUsuario;
     }
 
     public String getNome() {
