@@ -1,11 +1,14 @@
 package com.squad_17_api.demo.controller;
 
+import com.squad_17_api.demo.model.Aluno;
+import com.squad_17_api.demo.model.Curso;
 import com.squad_17_api.demo.model.Usuario;
 import com.squad_17_api.demo.service.impl.UsuarioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.squad_17_api.demo.repository.UserRepository;
 
 import java.util.List;
 
@@ -30,5 +33,16 @@ public class UsuarioController {
     public ResponseEntity<List<Usuario>> buscarTodos() {
         return ResponseEntity.ok(userService.buscarTodos());
 
+    }
+
+    @PutMapping("/{email}")
+    public ResponseEntity<Usuario>atualizarUsuario(@PathVariable String email, @RequestBody Usuario usuario) {
+        usuario.setEmail(email);
+        return ResponseEntity.ok(userService.atualizar(usuario));
+    }
+
+    @DeleteMapping("/{email}")
+    public ResponseEntity<Usuario> deleteUsuario(@PathVariable String email) {
+        return ResponseEntity.ok(userService.deletar(email));
     }
 }
