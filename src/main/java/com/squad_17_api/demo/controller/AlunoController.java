@@ -1,6 +1,8 @@
 package com.squad_17_api.demo.controller;
 
 import com.squad_17_api.demo.model.Aluno;
+import com.squad_17_api.demo.model.Curso;
+import com.squad_17_api.demo.service.*;
 import com.squad_17_api.demo.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,9 @@ import java.util.List;
 @RequestMapping("/api/alunos")
 public class AlunoController {
 
+    @Autowired
+    private CursoService cursoService;
+    
     @Autowired
     private AlunoRepository alunoRepository;
 

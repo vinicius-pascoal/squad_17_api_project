@@ -1,9 +1,9 @@
 package com.squad_17_api.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import java.util.List;
+
+import jakarta.persistence.*;
+
 //model
 @Entity
 public class Aluno {
@@ -13,9 +13,23 @@ public class Aluno {
     private String nome;
     private Integer matricula;
 
+    @ManyToMany
+    @JoinTable(name = "Alunocurso", joinColumns = @JoinColumn(name = "id_aluno"), inverseJoinColumns = @JoinColumn(name = "id_curso"))
+    private List<Curso> cursos;
+
+
+
     // Getters e Setters
     public Integer getId() {
         return id;
+    }
+
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
     }
 
     public void setId(Integer id) {
