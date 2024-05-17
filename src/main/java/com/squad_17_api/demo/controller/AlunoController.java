@@ -1,6 +1,8 @@
 package com.squad_17_api.demo.controller;
 
 import com.squad_17_api.demo.model.Aluno;
+import com.squad_17_api.demo.model.Curso;
+import com.squad_17_api.demo.service.*;
 import com.squad_17_api.demo.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,11 @@ import java.util.List;
 @RequestMapping("/api/alunos")
 public class AlunoController {
 
+    private AlunoService alunoService;
+
+    @Autowired
+    private CursoService cursoService;
+    
     @Autowired
     private AlunoRepository alunoRepository;
 
@@ -59,6 +66,19 @@ public class AlunoController {
 
         alunoRepository.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+    @PostMapping("/{alunoId}/matricular/{cursoId}")
+    public ResponseEntity<Void> matricularAlunoEmCurso(@PathVariable Integer alunoId, @PathVariable Integer cursoId) {
+        Aluno aluno = alunoService.buscarPorId(alunoId);
+        Curso curso = cursoService.buscarPorId(cursoId);
+
+        if (aluno == null || curso == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        aluno.getCursos().add(curso);
+        alunoService.atualizar(aluno);
+        return ResponseEntity.ok().build();
     }
 
 }
