@@ -15,8 +15,6 @@ import java.util.List;
 @RequestMapping("/api/alunos")
 public class AlunoController {
 
-    private AlunoService alunoService;
-
     @Autowired
     private CursoService cursoService;
     
@@ -66,19 +64,6 @@ public class AlunoController {
 
         alunoRepository.deleteById(id);
         return ResponseEntity.noContent().build();
-    }
-    @PostMapping("/{alunoId}/matricular/{cursoId}")
-    public ResponseEntity<Void> matricularAlunoEmCurso(@PathVariable Integer alunoId, @PathVariable Integer cursoId) {
-        Aluno aluno = alunoService.buscarPorId(alunoId);
-        Curso curso = cursoService.buscarPorId(cursoId);
-
-        if (aluno == null || curso == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        aluno.getCursos().add(curso);
-        alunoService.atualizar(aluno);
-        return ResponseEntity.ok().build();
     }
 
 }
