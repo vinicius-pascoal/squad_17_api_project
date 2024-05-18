@@ -12,4 +12,5 @@ public interface UsuarioService {
     Optional<Usuario> buscarPorId(Integer id);
     Usuario atualizar(Usuario usuario);
     Usuario deletar(String email);
+    Usuario criar(Usuario usuario);
 }
