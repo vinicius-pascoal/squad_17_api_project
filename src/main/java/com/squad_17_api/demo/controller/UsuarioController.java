@@ -29,16 +29,15 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário ou senha inválidos");
         }
     }
-
-    @PostMapping
-    public ResponseEntity<Usuario> adicionarUsuario(@RequestBody Usuario usuario) {
-        if (usuario.getId() != null && UserRepository.existsById(usuario.getId())) {
-            throw new IllegalArgumentException("Não é possível adicionar o usuário porque já existe um usuário com o ID fornecido.");
-        }
-
-        Usuario novoUsuario = UserRepository.save(usuario);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novoUsuario);
-    }
+//    @PostMapping
+//    public ResponseEntity<Usuario> adicionarUsuario(@RequestBody Usuario usuario) {
+//        if (usuario.getId() != null && UserRepository.existsById(usuario.getId())) {
+//            throw new IllegalArgumentException("Não é possível adicionar o usuário porque já existe um usuário com o ID fornecido.");
+//        }
+//
+//        Usuario novoUsuario = UserRepository.save(usuario);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(novoUsuario);
+//    }
 
     @GetMapping
     public ResponseEntity<List<Usuario>> buscarTodos() {
