@@ -58,3 +58,4 @@ public class UsuarioController {
         return ResponseEntity.ok(userService.deletar(email));
     }
 }
+// CÓDIGO
