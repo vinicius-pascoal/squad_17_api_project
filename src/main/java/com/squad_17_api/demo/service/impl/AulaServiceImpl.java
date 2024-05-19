@@ -7,40 +7,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AulaServiceImpl implements AulaService {
 
-    private final AulaRepository aulaRepository;
-
     @Autowired
-    public AulaServiceImpl(AulaRepository aulaRepository) {
-        this.aulaRepository = aulaRepository;
-    }
+    private AulaRepository aulaRepository;
 
     @Override
-    public List<Aula> listarAulas() {
+    public List<Aula> getAllAulas() {
         return aulaRepository.findAll();
     }
 
     @Override
-    public Optional<Aula> buscarAulaPorId(Long id) {
-        return aulaRepository.findById(id);
+    public Aula getAulaById(Integer id) {
+        return aulaRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Aula salvarAula(Aula aula) {
+    public Aula createAula(Aula aula) {
         return aulaRepository.save(aula);
     }
 
     @Override
-    public void atualizarAula(Aula aula) {
-        aulaRepository.save(aula);
+    public Aula updateAula(Integer id, Aula aula) {
+        Aula existingAula = aulaRepository.findById(id).orElse(null);
+        if (existingAula != null) {
+            existingAula.setTitulo(aula.getTitulo());
+            existingAula.setData(aula.getData());
+            existingAula.setHoraInicio(aula.getHoraInicio());
+            existingAula.setHoraFim(aula.getHoraFim());
+            return aulaRepository.save(existingAula);
+        }
+        return null;
     }
 
     @Override
-    public void deletarAula(Long id) {
+    public void deleteAula(Integer id) {
         aulaRepository.deleteById(id);
     }
 }
