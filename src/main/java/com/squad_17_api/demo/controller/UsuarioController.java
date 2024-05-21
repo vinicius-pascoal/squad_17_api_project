@@ -30,6 +30,11 @@ public class UsuarioController {
         }
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Usuario> addUsuario(@RequestBody Usuario usuario) {
+        return ResponseEntity.ok(userService.criar(usuario));
+    }
+
     @GetMapping
     public ResponseEntity<List<Usuario>> buscarTodos() {
         return ResponseEntity.ok(userService.buscarTodos());
@@ -53,3 +58,4 @@ public class UsuarioController {
         return ResponseEntity.ok(userService.deletar(email));
     }
 }
+// CÓDIGO

@@ -1,11 +1,13 @@
 package com.squad_17_api.demo.service.impl;
 
+import com.squad_17_api.demo.exception.UsuarioExistenteException;
 import com.squad_17_api.demo.model.Usuario;
 import com.squad_17_api.demo.repository.UserRepository;
 import com.squad_17_api.demo.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import jakarta.persistence.Id;
+import java.awt.font.OpenType;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +45,12 @@ public class UsuarioServiceImpl implements UsuarioService {
             userRepository.delete(usuario);
         }
         return usuario;
-
-
+    }
+    @Override
+    public Usuario criar(Usuario usuario) {
+        if (userRepository.findById(usuario.getId()).isPresent()) {
+            throw new UsuarioExistenteException("Já existe um usuário com o ID informado. Utilize o método atualizar para modificar um usuário existente.");
+        }
+        return userRepository.save(usuario);
     }
 }
